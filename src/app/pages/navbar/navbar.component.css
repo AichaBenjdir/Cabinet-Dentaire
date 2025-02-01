@@ -1,0 +1,8 @@
+
+.navbar {
+    background-color: #ffffff;
+  }
+  .navbar-nav .dropdown-menu {
+    display: none; 
+  }
+  
