@@ -1,1 +1,55 @@
-<p>prendre-rdv works!</p>
+<div class="container mt-5" id="appointment">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3>Prendre un rendez-vous</h3>
+            <p class="lead">Réservez votre consultation facilement et rapidement.<br> Nous sommes là pour vous accompagner dans votre transformation et améliorer votre bien-être.</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Informations de Disponibilité -->
+        <div class="col-md-6 ">
+            <h5 >Disponibilités :</h5>
+            <ul class="list-unstyled">
+                <li><i class="bi bi-calendar-day"></i> Lundi à Vendredi : 08:00 - 19:00</li>
+                <li><i class="bi bi-calendar-day"></i> Samedi : 08:00 - 14:00</li>
+                <li><i class="bi bi-calendar-day"></i> Dimanche : Fermé</li>
+            </ul>
+        </div>
+        
+        <!-- Formulaire de Réservation -->
+        <div class="col-md-6 ">
+            <h5 >Formulaire de réservation :</h5>
+            <form action="/submit-appointment" method="POST" class="appointment-form">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone :</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment_date">Date du rendez-vous :</label>
+                    <input type="date" class="form-control" id="appointment_date" name="appointment_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Heure :</label>
+                    <input type="time" class="form-control" id="time" name="time" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Information de Contact -->
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <p>Si vous avez des questions ou besoin d'aide, vous pouvez nous contacter au <strong>+216 99 153 853</strong> ou par email à <strong>zied.benjdir@gmail.com</strong>.</p>
+        </div>
+    </div>
+</div>

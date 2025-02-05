@@ -1,0 +1,203 @@
+ <!-- <div id="wrapper">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      
+  
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/home">
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-tooth"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3 font-weight-bold">CABINET DENTAIRE</div>
+      </a>
+  
+      <hr class="sidebar-divider my-0">
+  
+      
+     
+  
+   
+      <li class="nav-item">
+        <a routerLink="/" class="nav-link d-flex align-items-center">
+          <i class="fas fa-tachometer-alt"></i>
+          <span class="ml-2">Tableau de Bord</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+      
+      <li class="nav-item">
+        <a routerLink="/liste_patients" class="nav-link d-flex align-items-center">
+          <i class="fas fa-user-injured"></i>
+          <span class="ml-2">Gérer les Patients</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+    
+      <li class="nav-item">
+        <a routerLink="/liste_dentistes" class="nav-link d-flex align-items-center">
+          <i class="fas fa-user-md"></i>
+          <span class="ml-2">Gérer les Dentistes</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+      <li class="nav-item">
+        <a routerLink="/liste_rendezvous" class="nav-link d-flex align-items-center">
+          <i class="fas fa-calendar-alt"></i>
+          <span class="ml-2">Gérer les Rendez-vous</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+     
+      <li class="nav-item">
+        <a routerLink="/liste_traitements" class="nav-link d-flex align-items-center">
+          <i class="fas fa-dental-floss"></i>
+          <span class="ml-2">Gérer les Traitements</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+      
+  
+      <hr class="sidebar-divider">
+  
+   
+      <div class="sidebar-heading">
+        Profil
+      </div>
+  
+      <li class="nav-item">
+        <a routerLink="/profile" class="nav-link d-flex align-items-center">
+          <i class="fas fa-user-circle"></i>
+          <span class="ml-2">Mon Profil</span>
+        </a>
+      </li>
+  
+      <hr class="sidebar-divider">
+  
+    
+      <li class="nav-item">
+        <button class="nav-link d-flex align-items-center" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="ml-2">Déconnexion</span>
+        </button>
+      </li>
+  
+      <hr class="sidebar-divider my-0">
+    </ul>
+  
+  </div>
+    -->
+
+ <!-- Sidebar -->
+ <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+        </a>
+        <a routerLink="/dashbord" class="list-group-item list-group-item-action py-2 ripple active">
+          <i class="fas fa-chart-area fa-fw me-3"></i>Dashbord<span></span>
+        </a>
+        <a routerLink="/ajouter-patients" class="list-group-item list-group-item-action py-2 ripple"><i
+          class="fas fa-lock fa-fw me-3"></i><span>Gérer les Patients</span></a>
+      
+        <a routerLink="/appointments" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-lock fa-fw me-3"></i><span>Gérer les Rendez-vous</span></a>
+        <a routerLink="/traitements" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-chart-line fa-fw me-3"></i><span>Gérer les Traitements</span></a>
+        
+      </div>
+    </div>
+  </nav>
+
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+   
+    <div class="container-fluid">
+     
+      <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+     
+      <a class="navbar-brand" href="#">
+        <img src="assets/logoCabinet.jpg" height="85" alt="MDB Logo"
+          loading="lazy" />
+      </a>
+   
+      <form class="d-none d-md-flex input-group w-auto my-auto">
+        <input autocomplete="off" type="search" class="form-control rounded"
+          placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px;" />
+        <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+      </form>
+
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+       
+        <li class="nav-item dropdown">
+          <a data-mdb-dropdown-init class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-bell"></i>
+            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">Some news</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Another news</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Icon -->
+        <li class="nav-item">
+          <a class="nav-link me-3 me-lg-0" href="#">
+            <i class="fas fa-fill-drip"></i>
+          </a>
+        </li>
+       
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+
+        
+
+      
+        <li class="nav-item dropdown">
+          <a data-mdb-dropdown-init class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="assets/dentist.jpg" class="rounded-circle"
+              height="22" alt="Avatar" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>

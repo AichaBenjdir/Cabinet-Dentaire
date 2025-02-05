@@ -35,4 +35,37 @@ export class AccueilComponent implements OnInit, OnDestroy {
       clearInterval(this.interval);
     }
   }
+
+  slides = [
+    {
+      image: 'assets/c2.jpg',
+      alt: 'Blanchiment Dentaire',
+      title: 'Le Blanchiment Dentaire',
+      description: `Il permet d’éclaircir la couleur des dents en appliquant un produit de blanchiment. Une séance sera réalisée au cabinet.`
+    },
+    {
+      image: 'assets/c-dentaire.png',
+      alt: 'Orthodontie Invisible',
+      title: `L’Orthodontie Invisible`,
+      description: `C’est une solution confortable et esthétique pour aligner les dents par une série de gouttières transparentes.`
+    },
+    {
+      image: 'assets/c2.jpg',
+      alt: 'Traitement des Fluoroses',
+      title: `Le Traitement des Fluoroses Dentaires`,
+      description: `Il comporte différentes phases : le blanchiment, la micro abrasion et l’infiltration à la résine composite.`
+    }
+  ];
+  
+  activeIndex = 0;
+  
+  constructor() { }
+  
+  prevSlide(): void {
+    this.activeIndex = (this.activeIndex > 0) ? this.activeIndex - 1 : this.slides.length - 1;
+  }
+  
+  nextSlide(): void {
+    this.activeIndex = (this.activeIndex < this.slides.length - 1) ? this.activeIndex + 1 : 0;
+  }
 }

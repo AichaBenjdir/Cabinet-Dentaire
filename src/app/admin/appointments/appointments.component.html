@@ -1,1 +1,41 @@
-<p>appointments works!</p>
+
+<app-home></app-home>
+<div class="container d-flex justify-content-center ">
+    <div class="container-lg">
+        <div class="table-responsive">
+            <div *ngIf="rendezVousList.length > 0; else noAppointments">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Patient</th>
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Statut</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let rdv of rendezVousList">
+                      <td>{{ rdv.patient }}</td>
+                      <td>{{ rdv.dateHeure | date: 'short' }}</td>
+                      <td>{{ rdv.type }}</td>
+                      <td>{{ rdv.statut }}</td>
+                      <td>
+                        <button (click)="modifierRendezVous(rdv)">Modifier</button>
+                        <button (click)="annulerRendezVous(rdv)">Annuler</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <ng-template #noAppointments>
+                <p>Aucun rendez-vous à afficher.</p>
+              </ng-template>
+
+
+              
+              
+  </div>
+  </div>
+</div>

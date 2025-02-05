@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./avant-apres.component.css']
 })
 export class AvantApresComponent {
-
+  
 }
