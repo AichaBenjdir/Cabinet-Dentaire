@@ -14,6 +14,7 @@ import { NosTraitementsComponent } from './pages/nos-traitements/nos-traitements
 import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
 import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -21,21 +22,19 @@ const routes: Routes = [
   // { path: 'patients', component: PatientsComponent }, // Page des patients
   
   
-  //Partie public
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'nos-traitement', component: NosTraitementsComponent },
-  { path: 'avant-apres', component: AvantApresComponent},
-  { path: 'prendre-rdv', component: PrendreRDVComponent },
-  { path: 'login', component: LoginComponent },
+ // Partie publique
+ { path: 'accueil', component: AccueilComponent },
+ { path: 'nos-traitement', component: NosTraitementsComponent },
+ { path: 'avant-apres', component: AvantApresComponent},
+ { path: 'prendre-rdv', component: PrendreRDVComponent },
+ { path: 'login', component: LoginComponent },
 
-
-
-  //Partie privée 
-  { path: '', component: HomeComponent },
-  { path: 'dashbord', component: DashbordComponent },
-  { path: 'ajouter-patients', component: AjouterPatientsComponent},
-  { path: 'appointments', component: AppointmentsComponent},
-  { path: 'traitements', component: TraitementsComponent},
+ // Partie privée (protégée par AuthGuard)
+ { path: '', component: HomeComponent},
+ { path: 'dashbord', component: DashbordComponent, canActivate: [AuthGuard] },
+ { path: 'ajouter-patients', component: AjouterPatientsComponent, canActivate: [AuthGuard] },
+ { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
+ { path: 'traitements', component: TraitementsComponent, canActivate: [AuthGuard] }
 
 
 

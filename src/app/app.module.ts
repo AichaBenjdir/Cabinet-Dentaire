@@ -18,9 +18,10 @@ import { HomeComponent } from './admin/home/home.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TraitementsComponent } from './admin/traitements/traitements.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AppointmentsComponent } from './admin/appointments/appointments.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginComponent } from './pages/login/login.component';
     ProfileComponent,
     TraitementsComponent,
     AppointmentsComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,8 +49,9 @@ import { LoginComponent } from './pages/login/login.component';
     FormsModule,
     BrowserAnimationsModule,
     CommonModule,
+    RouterModule, 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

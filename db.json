@@ -1,4 +1,9 @@
 {
-    "appointments": []
-  }
-  
+  "users": [
+    {
+      "email": "zied.benjdir@gmail.com",
+      "password": "12cabinet**"
+    }
+  ]
+}
+
