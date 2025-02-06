@@ -20,17 +20,22 @@ const routes: Routes = [
   // { path: 'appointments', component: AppointmentsComponent }, // Page des rendez-vous
   // { path: 'patients', component: PatientsComponent }, // Page des patients
   
+  
+  //Partie public
   { path: 'accueil', component: AccueilComponent },
   { path: 'nos-traitement', component: NosTraitementsComponent },
   { path: 'avant-apres', component: AvantApresComponent},
   { path: 'prendre-rdv', component: PrendreRDVComponent },
   { path: 'login', component: LoginComponent },
 
-  // { path: '', component: HomeComponent },
-  // { path: 'dashbord', component: DashbordComponent },
-  // { path: 'ajouter-patients', component: AjouterPatientsComponent},
-  // { path: 'appointments', component: AppointmentsComponent},
-  // { path: 'traitements', component: TraitementsComponent},
+
+
+  //Partie privée 
+  { path: '', component: HomeComponent },
+  { path: 'dashbord', component: DashbordComponent },
+  { path: 'ajouter-patients', component: AjouterPatientsComponent},
+  { path: 'appointments', component: AppointmentsComponent},
+  { path: 'traitements', component: TraitementsComponent},
 
 
 
