@@ -1,9 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+
 
 
 /* You can add global styles to this file, and also import other style files */
 .screenContainer {
-    padding-top: 80px;
-    
-    
-  }
+  margin-left: 280px;  /* Décalage de 280px pour ajouter de l'espace entre la sidebar et le contenu */
+  padding: 2rem;
+  width: calc(100% - 280px);  /* Ajuste la largeur pour prendre l'espace restant après la sidebar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}

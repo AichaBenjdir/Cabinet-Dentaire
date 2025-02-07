@@ -1,8 +1,17 @@
-<app-navbar  *ngIf="router.url !== '/login'  && !router.url.startsWith('/dashbord') && !router.url.startsWith('/ajouter-patients') && !router.url.startsWith('/appointments') && !router.url.startsWith('/traitements')"></app-navbar> 
+<!-- <app-navbar  *ngIf="router.url !== '/login'  && !router.url.startsWith('/dashbord') && !router.url.startsWith('/ajouter-patients') && !router.url.startsWith('/appointments') && !router.url.startsWith('/traitements')"></app-navbar> 
 
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
 
 <app-footer *ngIf="router.url !== '/login'  && !router.url.startsWith('/dashbord') && !router.url.startsWith('/ajouter-patients') && !router.url.startsWith('/appointments') && !router.url.startsWith('/traitements')"></app-footer>
- 
+  -->
+
+
+  <app-navbar *ngIf="showLayout"></app-navbar>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+
+<app-footer *ngIf="showLayout"></app-footer>

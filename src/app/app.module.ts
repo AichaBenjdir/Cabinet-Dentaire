@@ -22,6 +22,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { AppointmentsComponent } from './admin/appointments/appointments.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
+import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appointment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RouterModule } from '@angular/router';
     TraitementsComponent,
     AppointmentsComponent,
     LoginComponent,
+    ListeAppointmentComponent,
     
   ],
   imports: [

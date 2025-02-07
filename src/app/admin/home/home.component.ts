@@ -20,4 +20,16 @@ export class HomeComponent {
     
   //   this.router.navigate(['/login']);
   // }
+  constructor(private router: Router) {} 
+  isLoggedIn = false;
+
+  ngOnInit() {
+    this.isLoggedIn = !!localStorage.getItem('user');
+  }
+  
+  logout() {
+    localStorage.removeItem('user'); // Suppression des infos utilisateur
+    this.router.navigate(['/login']); // Redirection vers la page publique
+  }
+  
 }

@@ -1,0 +1,49 @@
+<app-home></app-home>
+
+<div class="container my-5 d-flex justify-content-center screenContainer">
+  <h2>Liste des Rendez-vous</h2>
+  <button class="btn btn-primary my-3" (click)="openModal()">Prendre un rendez-vous</button>
+
+  <!-- Modal pour ajouter un rendez-vous -->
+  <div *ngIf="isModalOpen" class="modal fade show" tabindex="-1" style="display: block;" id="addAppointmentModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un Rendez-vous</h5>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #appointmentForm="ngForm" (ngSubmit)="onSubmit(appointmentForm)">
+                <label for="patient">Patient :</label>
+                <select name="patient" [(ngModel)]="newAppointment.patient" required>
+                    <option *ngFor="let patient of patients" [value]="patient.id">
+                      {{ patient.nom }} {{ patient.prenom }}
+                    </option>
+                  </select>
+                  
+              
+                <label for="date">Date :</label>
+                <input type="datetime-local" name="date" [(ngModel)]="newAppointment.date" required>
+              
+                <label for="treatment">Traitement :</label>
+                <input type="text" name="treatment" [(ngModel)]="newAppointment.treatment" required>
+              
+                <button type="submit">Ajouter</button>
+              </form>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h3>Agenda</h3>
+    <ul class="list-group">
+      <li *ngFor="let appointment of appointments" class="list-group-item">
+        <strong>Patient:</strong> {{ appointment.patient }},
+        <strong>Date:</strong> {{ appointment.date | date:'yyyy-MM-dd HH:mm' }},
+        <strong>Traitement:</strong> {{ appointment.treatment }}
+      </li>
+    </ul>
+  </div>
+</div>

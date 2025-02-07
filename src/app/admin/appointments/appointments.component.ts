@@ -1,15 +1,5 @@
 import { Component } from '@angular/core';
-
-
-
-interface RendezVous {
-  patient: string;
-  dateHeure: Date;
-  type: string;
-  statut: 'confirmé' | 'annulé' | 'en attente';
-  
-}
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointments',
@@ -17,19 +7,29 @@ interface RendezVous {
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent {
+  isModalOpen = false;
+  newAppointment = { patient: '', date: '', treatment: 'Consultation' };
+  appointments = [
+    { patient: 'John Doe', date: '2025-02-10T14:30', treatment: 'Consultation' },
+    { patient: 'Marie Dupont', date: '2025-02-11T10:00', treatment: 'Extraction' },
+  ];
 
-  rendezVousList: RendezVous[] = [];
-  modifierRendezVous(rdv: RendezVous): void {
-    // Implémentation de la logique pour modifier un rendez-vous
-    console.log('Modification du rendez-vous:', rdv);
+
+  constructor(private router: Router) {}
+  openModal() {
+    this.isModalOpen = true;
   }
-  annulerRendezVous(rdv: RendezVous): void {
-    // Implémentation de la logique pour annuler un rendez-vous
-    console.log('Annulation du rendez-vous:', rdv);
+
+  closeModal() {
+    this.isModalOpen = false;
   }
-  addRendezVous(patient: string, dateHeure: Date, type: string, statut: 'confirmé' | 'annulé' | 'en attente', medecin?: string, notes?: string) {
-    const rendezVous: RendezVous = { patient, dateHeure, type, statut };
-    this.rendezVousList.push(rendezVous);
+
+  onSubmit() {
+    this.appointments.push({ ...this.newAppointment });
+    this.closeModal();
+    this.newAppointment = { patient: '', date: '', treatment: 'Consultation' };
+
+    this.router.navigate(['/appointments']);
   }
   
 }

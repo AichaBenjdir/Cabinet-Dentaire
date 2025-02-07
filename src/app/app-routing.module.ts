@@ -15,6 +15,7 @@ import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
 import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appointment.component';
 
 const routes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   
   
  // Partie publique
+ { path: '', redirectTo: '/accueil', pathMatch: 'full' },
  { path: 'accueil', component: AccueilComponent },
  { path: 'nos-traitement', component: NosTraitementsComponent },
  { path: 'avant-apres', component: AvantApresComponent},
@@ -34,6 +36,7 @@ const routes: Routes = [
  { path: 'dashbord', component: DashbordComponent, canActivate: [AuthGuard] },
  { path: 'ajouter-patients', component: AjouterPatientsComponent, canActivate: [AuthGuard] },
  { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
+ { path: 'liste-appointment', component: ListeAppointmentComponent, canActivate: [AuthGuard] },
  { path: 'traitements', component: TraitementsComponent, canActivate: [AuthGuard] }
 
 

@@ -2,8 +2,39 @@
   "users": [
     {
       "email": "zied.benjdir@gmail.com",
-      "password": "12cabinet**"
+      "password": "12cabinet**",
+      "id": "9f9d"
+    }
+  ],
+  "rendezVous": [
+    {
+      "id": "1",
+      "patient": "John Doe",
+      "date": "2025-02-07T14:00:00",
+      "traitement": "Consultation générale"
+    },
+    {
+      "id": "2",
+      "patient": "Jane Doe",
+      "date": "2025-02-08T10:30:00",
+      "traitement": "Examen de suivi"
+    }
+  ],
+  "patients": [
+    {
+      "id": "1",
+      "nom": "John",
+      "prenom": "Doe",
+      "dateNaissance": "1996-02-04",
+      "telephone": "123-456-7890",
+      "isEditing": false
+    },
+    {
+      "id": "2",
+      "nom": "Jane",
+      "prenom": "Doe",
+      "dateNaissance": "1998-08-04",
+      "telephone": "987-654-3210"
     }
   ]
 }
-

@@ -1,41 +1,165 @@
+
 <app-home></app-home>
 
-<div class="container d-flex justify-content-center ">
-    <div class="container-lg">
-        <div class="table-responsive">
-            <div *ngIf="rendezVousList.length > 0; else noAppointments">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Patient</th>
-                      <th>Date</th>
-                      <th>Type</th>
-                      <th>Statut</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let rdv of rendezVousList">
-                      <td>{{ rdv.patient }}</td>
-                      <td>{{ rdv.dateHeure | date: 'short' }}</td>
-                      <td>{{ rdv.type }}</td>
-                      <td>{{ rdv.statut }}</td>
-                      <td>
-                        <button (click)="modifierRendezVous(rdv)">Modifier</button>
-                        <button (click)="annulerRendezVous(rdv)">Annuler</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+<div class="container my-5 d-flex justify-content-center screenContainer">
+    <h2>Liste des Rendez-vous</h2>
+    <button class="btn btn-primary my-3" (click)="openModal()">Prendre un rendez-vous</button>
+  
+    <!-- Modal pour ajouter un rendez-vous -->
+    <div *ngIf="isModalOpen" class="modal fade show" tabindex="-1" style="display: block;" id="addAppointmentModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ajouter un Rendez-vous</h5>
+            <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="patient" class="form-label">Patient concerné</label>
+                <input type="text" class="form-control" id="patient" [(ngModel)]="newAppointment.patient" name="patient" required>
               </div>
-              
-              <ng-template #noAppointments>
-                <p>Aucun rendez-vous à afficher.</p>
-              </ng-template>
+              <div class="mb-3">
+                <label for="appointmentDate" class="form-label">Date et heure</label>
+                <input type="datetime-local" class="form-control" id="appointmentDate" [(ngModel)]="newAppointment.date" name="date" required>
+              </div>
+              <div class="mb-3">
+                <label for="treatmentType" class="form-label">Type de traitement</label>
+                <select class="form-select" [(ngModel)]="newAppointment.treatment" name="treatment" required>
+                  <option value="Consultation">Consultation</option>
+                  <option value="Extraction">Extraction</option>
+                  <option value="Nettoyage">Nettoyage</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              </div>
+              <button routerLink="/appointments" type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="mt-4">
+      <h3>Agenda</h3>
+      <ul class="list-group">
+        <li *ngFor="let appointment of appointments" class="list-group-item">
+          <strong>Patient:</strong> {{ appointment.patient }}, <strong>Date:</strong> {{ appointment.date | date:'yyyy-MM-dd HH:mm' }}, <strong>Traitement:</strong> {{ appointment.treatment }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
 
 
-              
-              
-  </div>
-  </div>
-</div>
+
+
+<!-- <app-home></app-home>
+<section class="content" style="padding: 20px">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="mr-auto p-2" style="text-align: left;">
+                            <h3 class="m-0 font-weight-bold text-primary">New Appointment</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="addAppointment()">
+                            <div class="form-group">
+                                <label>Select Patient</label>
+                                <select class="form-control show-tick" type="text" [(ngModel)]="selectedPatient" name="patient" required>
+                                    <option value="" disabled>Select a patient</option>
+                                    <option *ngFor="let patient of patients" [ngValue]="patient">
+                                        {{patient.nom}} {{patient.prenom}} - {{patient.telephone}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <input type="datetime-local" class="form-control" [(ngModel)]="startTime" name="startTime" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Dentist Days</label>
+                                <select class="form-control show-tick" [(ngModel)]="days" name="days" (ngModelChange)="daysChanged()" required>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Selected Days</label>
+                                <select multiple class="form-control" [(ngModel)]="selectedDays" name="selectedDays" disabled>
+                                    <option *ngFor="let day of selectedDays">{{day}}</option>
+                                </select>
+                            </div>
+
+                            <div class="alert alert-danger" role="alert" *ngIf="error">
+                                {{errorMessage}}
+                            </div>
+                            <button type="submit" class="btn btn-block btn-lg btn-success waves-effect">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content" style="padding: 10px">
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Appointment List</h1>
+
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex">
+                <div class="mr-auto p-2" style="text-align: left;">
+                    <h6 class="font-weight-bold text-primary">To add a new appointment, click on the "Add" button</h6>
+                </div>
+                <div class="p-2" style="text-align: right;">
+                    <button type="button" class="btn btn-outline-success" (click)="goToAddPage()">
+                        <b>Add</b>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Patient</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                                <th>Days</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let appointment of appointments; let i = index">
+                                <th>{{i + 1}}</th>
+                                <td>{{appointment.patient}}</td>
+                                <td>{{appointment.status}}</td>
+                                <td>{{appointment.heure}}</td>
+                                <td>{{appointment.typeTraitement}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="edit(i)">Edit</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" (click)="delete(appointment.id, i)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

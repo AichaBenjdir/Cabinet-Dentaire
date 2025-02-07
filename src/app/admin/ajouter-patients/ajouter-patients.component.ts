@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PatientService } from 'src/app/patient.service';
 
 interface Patient {
+  id?: number;
   nom: string;
   prenom: string;
   telephone: string;
@@ -8,41 +10,56 @@ interface Patient {
   isEditing?: boolean; 
 }
 
-
 @Component({
   selector: 'app-ajouter-patients',
   templateUrl: './ajouter-patients.component.html',
-  styleUrls: ['./ajouter-patients.component.css']
+  styleUrls: ['./ajouter-patients.component.css'],
 })
-export class AjouterPatientsComponent {
-  patients: Patient[] = [
-    { nom: 'John', prenom: 'Doe', telephone: '55826987', dateNaissance: '1990-01-01', isEditing: false 
-      
-     }
-  ];
-  
-  addPatient() {
-    this.patients.push({ nom: '', prenom: '', telephone: '', dateNaissance: '', isEditing: true });
+export class AjouterPatientsComponent implements OnInit {
+  patients: Patient[] = [];
+
+  constructor(private patientService: PatientService) {}
+
+  ngOnInit(): void {
+    // Charger les patients depuis l'API lorsque le composant est initialisé
+    this.loadPatients();
   }
-  
-  editPatient(index: number) {
+
+  // Charger les patients
+  loadPatients(): void {
+    this.patientService.getPatients().subscribe((data) => {
+      this.patients = data;
+    });
+  }
+
+  addPatient(): void {
+    const newPatient: Patient = { nom: '', prenom: '', telephone: '', dateNaissance: '', isEditing: true };
+    this.patientService.addPatient(newPatient).subscribe((patient) => {
+      this.patients.push(patient);  // Ajouter le patient à la liste
+    });
+  }
+
+  editPatient(index: number): void {
     this.patients[index].isEditing = true;
   }
-  
-  updatePatient(event: Event, index: number, field: keyof Patient) {
+
+  updatePatient(event: Event, index: number, field: keyof Patient): void {
     const value = (event.target as HTMLElement).innerText.trim();
-    // Ensure you're assigning a value that matches the type of the field
     if (field === 'nom' || field === 'prenom' || field === 'telephone' || field === 'dateNaissance') {
       this.patients[index][field] = value;
+      this.patientService.updatePatient(this.patients[index]).subscribe();  // Sauvegarder les modifications sur le serveur
     }
   }
-  
-  
-  savePatient(index: number) {
+
+  savePatient(index: number): void {
     this.patients[index].isEditing = false;
+    this.patientService.updatePatient(this.patients[index]).subscribe();  // Sauvegarder le patient
   }
-  
-  deletePatient(index: number) {
-    this.patients.splice(index, 1);
+
+  deletePatient(index: number): void {
+    const patientToDelete = this.patients[index];
+    this.patientService.deletePatient(patientToDelete.id!).subscribe(() => {
+      this.patients.splice(index, 1);  // Supprimer le patient de la liste
+    });
   }
-}  
+}
