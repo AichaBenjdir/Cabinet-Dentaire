@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-     "json-server": "json-server --watch db.json --port 3000"
+    "json-server": "json-server --watch db.json --port 3000"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +21,11 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@fullcalendar/angular": "^6.1.16",
+    "@fullcalendar/daygrid": "^6.1.15",
     "bootstrap": "^5.3.3",
+    "chart.js": "^3.0.0",
+    "ng2-charts": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { HomeComponent } from './admin/home/home.component';
-import { DashbordComponent } from './admin/dashbord/dashbord.component';
+
 import { AjouterPatientsComponent } from './admin/ajouter-patients/ajouter-patients.component';
 import { TraitementsComponent } from './admin/traitements/traitements.component';
 import { AppointmentsComponent } from './admin/appointments/appointments.component';
@@ -15,7 +15,9 @@ import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
 import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './auth.guard';
-import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appointment.component';
+
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+
 
 const routes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -33,10 +35,10 @@ const routes: Routes = [
 
  // Partie privée (protégée par AuthGuard)
  { path: '', component: HomeComponent},
- { path: 'dashbord', component: DashbordComponent, canActivate: [AuthGuard] },
+ { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
  { path: 'ajouter-patients', component: AjouterPatientsComponent, canActivate: [AuthGuard] },
  { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
- { path: 'liste-appointment', component: ListeAppointmentComponent, canActivate: [AuthGuard] },
+ 
  { path: 'traitements', component: TraitementsComponent, canActivate: [AuthGuard] }
 
 

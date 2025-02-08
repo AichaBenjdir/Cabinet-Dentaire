@@ -20,7 +20,7 @@ export class AppComponent {
 
   private checkRoute(url: string): void {
     // Liste des routes privées où on cache le navbar et le footer
-    const privateRoutes = ['/dashbord', '/ajouter-patients', '/appointments', '/liste-appointment', '/traitements'];
+    const privateRoutes = ['/dashboard', '/ajouter-patients', '/appointments', '/liste-appointment', '/traitements'];
 
     // Vérifie si l'utilisateur est dans la partie privée
     this.showLayout = !privateRoutes.some(route => url.startsWith(route)) && url !== '/login';

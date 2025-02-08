@@ -1,0 +1,25 @@
+.dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  .widgets {
+    display: flex;
+    gap: 20px;
+  }
+  .widget {
+    background: #3498db;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+  }
+  .chart-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+
+  .chart{
+    margin-top: 100px;
+  }

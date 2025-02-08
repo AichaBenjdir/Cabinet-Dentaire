@@ -8,16 +8,17 @@
   ],
   "rendezVous": [
     {
-      "id": "1",
+      "id": "2916",
       "patient": "John Doe",
-      "date": "2025-02-07T14:00:00",
-      "traitement": "Consultation générale"
+      "date": "2025-02-13T07:26",
+      "treatment": "1",
+      "treatmentName": "Examen de suivi"
     },
     {
-      "id": "2",
-      "patient": "Jane Doe",
-      "date": "2025-02-08T10:30:00",
-      "traitement": "Examen de suivi"
+      "id": "ddbd",
+      "patient": "John Doe",
+      "date": "2025-02-18T07:34",
+      "treatment": "2"
     }
   ],
   "patients": [
@@ -36,5 +37,29 @@
       "dateNaissance": "1998-08-04",
       "telephone": "987-654-3210"
     }
+  ],
+  "traitements": [
+    {
+      "id": "1",
+      "name": "Consultation"
+    },
+    {
+      "id": "2",
+      "name": "Orthodontie"
+    },
+    {
+      "id": "3",
+      "name": "Endodontique"
+    },
+    {
+      "id": "4",
+      "name": "Blanchiment Dentaire"
+    },
+    {
+      "id": "5",
+      "name": "Autres"
+    }
+
+
   ]
 }

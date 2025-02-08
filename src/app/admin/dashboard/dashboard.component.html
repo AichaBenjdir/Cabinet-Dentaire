@@ -1,0 +1,21 @@
+<app-home></app-home>
+<div class="container my-5 d-flex justify-content-center screenContainer">
+    <h1>Tableau de Bord</h1>
+    <div class="widgets">
+      <div class="widget">👨‍⚕️ Total Patients: {{ totalPatients }}</div>
+<div class="widget">📅 Rendez-vous Aujourd’hui: {{ totalRdvToday }}</div>
+<div class="widget">🏥 Traitements en cours: {{ totalTraitements }}</div>
+
+    </div>
+ 
+  
+    <div class="chart" style="display: block;" >
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="'bar'">
+      </canvas>
+    </div>
+    
+</div>

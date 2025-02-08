@@ -11,7 +11,7 @@ import { NosTraitementsComponent } from './pages/nos-traitements/nos-traitements
 import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
 import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { DashbordComponent } from './admin/dashbord/dashbord.component';
+
 import { AjouterPatientsComponent } from './admin/ajouter-patients/ajouter-patients.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HomeComponent } from './admin/home/home.component';
@@ -22,7 +22,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { AppointmentsComponent } from './admin/appointments/appointments.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
-import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appointment.component';
+
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
+
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,7 @@ import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appoi
     AvantApresComponent,
     PrendreRDVComponent,
     ContactComponent,
-    DashbordComponent,
+    DashboardComponent,
     AjouterPatientsComponent,
     FooterComponent,
     HomeComponent,
@@ -41,7 +46,7 @@ import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appoi
     TraitementsComponent,
     AppointmentsComponent,
     LoginComponent,
-    ListeAppointmentComponent,
+
     
   ],
   imports: [
@@ -52,6 +57,9 @@ import { ListeAppointmentComponent } from './admin/liste-appointment/liste-appoi
     BrowserAnimationsModule,
     CommonModule,
     RouterModule, 
+    NgChartsModule,
+
+    
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

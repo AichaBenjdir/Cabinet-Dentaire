@@ -18,7 +18,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         console.log('Connexion réussie');
-        this.router.navigate(['/dashbord']);
+        this.router.navigate(['/dashboard']);
         // Redirection vers une autre page après la connexion réussie
       } else {
         console.error('Identifiants invalides');
