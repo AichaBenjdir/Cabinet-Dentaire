@@ -1,24 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000'; // Assurez-vous que db.json tourne via json-server
+  private apiUrl = 'http://localhost:3000'; // Vérifiez que json-server est bien en cours d'exécution
 
   constructor(private http: HttpClient) {}
 
   getPatients(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/patients`);
+    return this.http.get<any[]>(`${this.apiUrl}/patients`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   getRendezvous(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/rendezVous`);
+    return this.http.get<any[]>(`${this.apiUrl}/rendezVous`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   getTraitements(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/traitements`);
+    return this.http.get<any[]>(`${this.apiUrl}/traitements`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPatientsByMonth(): Observable<{ months: string[], patientCounts: number[] }> {
+    return this.http.get<{ months: string[], patientCounts: number[] }>(`${this.apiUrl}/patients-by-month`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any): Observable<never> {
+    console.error('Une erreur est survenue :', error);
+    return throwError(() => new Error('Une erreur s\'est produite, veuillez réessayer plus tard.'));
   }
 }

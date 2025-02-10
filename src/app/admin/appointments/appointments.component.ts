@@ -34,22 +34,35 @@ export class AppointmentsComponent {
 
   loadTreatments(): void {
     this.rendezvousService.getTreatments().subscribe((data: any[]) => {
+      console.log(" Traitements récupérés :", data);
       this.treatments = data;
+      this.loadRendezvous();
+    }, error => {
+      console.error(" Erreur chargement traitements :", error);
     });
   }
-
+  
+  
   loadRendezvous(): void {
     this.rendezvousService.getRendezvous().subscribe((data: any[]) => {
+      console.log(" Rendez-vous récupérés :", data);
+      console.log(" Traitements disponibles :", this.treatments);
+  
       this.appointments = data.map(appointment => {
-        // Trouver le traitement correspondant à l'ID
-        const treatment = this.treatments.find(t => t.id == appointment.treatment);
+        const treatment = this.treatments.find(t => t.id === appointment.treatment);
         return {
           ...appointment,
-          treatmentName: treatment ? treatment.name : 'Traitement inconnu'  // Remplacer l'ID par le nom
+          treatmentName: treatment ? treatment.type : ' Traitement introuvable'
         };
       });
+  
+      console.log("Rendez-vous après association :", this.appointments);
+    }, error => {
+      console.error(" Erreur chargement rendez-vous :", error);
     });
   }
+  
+  
   
   
   openModal(): void {
@@ -62,47 +75,36 @@ export class AppointmentsComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      // Trouver le patient sélectionné
       const selectedPatient = this.patients.find(p => p.id == this.newAppointment.patient);
       if (selectedPatient) {
-        this.newAppointment = {
-          ...this.newAppointment,
-          patient: `${selectedPatient.nom} ${selectedPatient.prenom}`  // Ajouter le nom du patient
-        };
+        this.newAppointment.patient = `${selectedPatient.nom} ${selectedPatient.prenom}`;
       }
   
-      // Trouver le traitement sélectionné par son nom
-      const selectedTreatment = this.treatments.find(t => t.name === this.newAppointment.treatment);
+      // 🛠 Correction ici : comparer l'ID au lieu du nom
+      const selectedTreatment = this.treatments.find(t => t.id == this.newAppointment.treatment);
       if (selectedTreatment) {
-        this.newAppointment.treatment = selectedTreatment.id;  // Ajouter l'ID du traitement
+        this.newAppointment.treatment = selectedTreatment.id;
       }
   
-      // Vérifier si un rendez-vous est en cours de modification
       if (this.newAppointment.id) {
-        // Modifier le rendez-vous existant
         this.rendezvousService.updateRendezvous(this.newAppointment).subscribe(
           response => {
-            console.log('✅ Rendez-vous modifié avec succès:', response);
-            this.loadRendezvous();  // Recharger la liste des rendez-vous
-            this.newAppointment = { patient: '', date: '', treatment: '' };  // Réinitialiser le formulaire
+            console.log('✅ Rendez-vous modifié:', response);
+            this.loadRendezvous();
+            this.newAppointment = { patient: '', date: '', treatment: '' };
             this.closeModal();
           },
-          error => {
-            console.error('❌ Erreur lors de la modification du rendez-vous:', error);
-          }
+          error => console.error('❌ Erreur de modification:', error)
         );
       } else {
-        // Ajouter un nouveau rendez-vous
         this.rendezvousService.addRendezvous(this.newAppointment).subscribe(
           response => {
-            console.log('✅ Rendez-vous ajouté avec succès:', response);
-            this.loadRendezvous();  // Recharger la liste des rendez-vous
-            this.newAppointment = { patient: '', date: '', treatment: '' };  // Réinitialiser le formulaire
+            console.log('✅ Rendez-vous ajouté:', response);
+            this.loadRendezvous();
+            this.newAppointment = { patient: '', date: '', treatment: '' };
             this.closeModal();
           },
-          error => {
-            console.error('❌ Erreur lors de l\'ajout du rendez-vous:', error);
-          }
+          error => console.error('❌ Erreur d\'ajout:', error)
         );
       }
     }
@@ -115,11 +117,11 @@ export class AppointmentsComponent {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce rendez-vous ?")) {
       this.rendezvousService.deleteRendezvous(appointmentId).subscribe(
         () => {
-          console.log('✅ Rendez-vous supprimé avec succès');
+          console.log(' Rendez-vous supprimé avec succès');
           this.loadRendezvous();  // Recharger la liste des rendez-vous après la suppression
         },
         error => {
-          console.error('❌ Erreur lors de la suppression du rendez-vous:', error);
+          console.error('Erreur lors de la suppression du rendez-vous:', error);
         }
       );
     }

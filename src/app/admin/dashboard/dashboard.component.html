@@ -1,19 +1,45 @@
 <app-home></app-home>
-<div class="container my-5 d-flex justify-content-center screenContainer">
-  <h1>Tableau de Bord</h1>
-  <div class="widgets">
-    <div class="widget">👨‍⚕️ Total Patients: {{ totalPatients }}</div>
-    <div class="widget">📅 Total Rendez-vous : {{ totalRdvToday }}</div>
-    <div class="widget">🏥 Traitements en cours: {{ totalTraitements }}</div>
-  </div>
+<div class="container d-flex justify-content-center screenContainer">
+  <div class="content">
+    <h2>Admin Dashboard</h2>
+    
+    <div class="dashboard-container">
+      <div class="top-section">
+        <!-- Section des cartes -->
+        <div class="main-cards">
+          <div class="widgets">
+            <div class="widget">👨‍⚕️ Total Patients: {{ totalPatients }}</div>
+            <div class="widget">📅 Total Rendez-vous: {{ totalRdvToday }}</div>
+            <div class="widget">🏥 Traitements en cours: {{ totalTraitements }}</div>
+          </div>
+        </div>
 
-  <div style="display: block; width: 600px;">
-    <canvas baseChart 
-      [data]="barChartData"
-      [options]="barChartOptions"
-      chartType="bar">
-    </canvas>
+       </div>
+    <!-- <h2 class="stats-title">Statistics Reports</h2>
+
+    
+    <div class="dashboard-container">
+      <div class="dashboard-table">
+        <table id="main-table" class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th>Nom du patient</th>
+              <th>Téléphone</th>
+              <th>Rendez-vous</th>
+              <th>Traitements</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.nom }} {{ patient.prenom }}</td>
+              <td>{{ patient.telephone }}</td>
+              <td>{{ getRendezvousForPatient(patient.id) }}</td>
+              <td>{{ getTraitementForPatient(patient.id) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> -->
+    
   </div>
-  
-  
 </div>

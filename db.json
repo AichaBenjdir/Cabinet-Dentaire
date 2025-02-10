@@ -9,52 +9,73 @@
   "rendezVous": [
     {
       "id": "2916",
-      "patient": "John Doe",
+      "patient": "RJ Mariem",
       "date": "2025-02-13T07:26",
-      "treatment": "1",
-      "treatmentName": "Examen de suivi"
+      "treatment": "09cf1"
     },
     {
       "id": "ddbd",
-      "patient": "John Doe",
+      "patient": "Jane BK",
       "date": "2025-05-18T07:34",
-      "treatment": "2",
-      "treatmentName": "Traitement inconnu"
+      "treatment": "09cf2"
     },
     {
       "id": "ca74",
-      "patient": "John Doe",
+      "patient": "Dialo Fatima",
       "date": "2025-02-10T11:51",
-      "treatment": "09cf"
+      "treatment": "63d3"
+    },
+    {
+      "id": "9c7e",
+      "patient": "Sow Oumou",
+      "date": "2025-02-10T10:05",
+      "treatment": "09cf2"
     }
   ],
   "patients": [
     {
       "id": "1",
-      "nom": "John",
-      "prenom": "Doe",
+      "nom": "Dialo",
+      "prenom": "Fatima",
       "dateNaissance": "1996-02-04",
-      "telephone": "123-456-7890",
+      "telephone": "36-984-152",
       "isEditing": false
     },
     {
       "id": "2",
       "nom": "Jane",
-      "prenom": "Doe",
+      "prenom": "BK",
       "dateNaissance": "1998-08-04",
-      "telephone": "987-654-3210"
+      "telephone": "46-987-538",
+      "isEditing": false
+    },
+    {
+      "id": "a24c",
+      "nom": "RJ",
+      "prenom": "Mariem",
+      "telephone": "55-987-146",
+      "dateNaissance": "1996-03-05",
+      "isEditing": false
+    },
+    {
+      "id": "9837",
+      "nom": "Sow",
+      "prenom": "Oumou",
+      "telephone": "36-987-147",
+      "dateNaissance": "1995-04-12",
+      "isEditing": false
     }
   ],
   "traitements": [
     {
-      "id": "09cf",
+      "id": "09cf1",
       "type": "Endodontie",
       "description": "Traitement des canaux dentaires",
       "cout": 120,
       "duree": 30
     },
     {
-      "id": "09cf",
+      "id": "09cf2",
       "type": "Consultation",
       "description": "Examen général de l’état bucco-dentaire",
       "cout": 60,
