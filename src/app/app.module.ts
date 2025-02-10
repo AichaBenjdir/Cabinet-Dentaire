@@ -10,7 +10,6 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { NosTraitementsComponent } from './pages/nos-traitements/nos-traitements.component';
 import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
 import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
-import { ContactComponent } from './pages/contact/contact.component';
 
 import { AjouterPatientsComponent } from './admin/ajouter-patients/ajouter-patients.component';
 import { FooterComponent } from './pages/footer/footer.component';
@@ -37,7 +36,6 @@ import { NgChartsModule } from 'ng2-charts';
     NosTraitementsComponent,
     AvantApresComponent,
     PrendreRDVComponent,
-    ContactComponent,
     DashboardComponent,
     AjouterPatientsComponent,
     FooterComponent,
