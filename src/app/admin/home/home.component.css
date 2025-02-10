@@ -28,3 +28,6 @@
     overflow-x: hidden;
     overflow-y: auto; 
     }
+    .navbar-brand img{
+      margin-left: 50px;
+    }
