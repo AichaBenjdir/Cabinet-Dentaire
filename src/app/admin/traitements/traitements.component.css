@@ -1,82 +1,64 @@
-/* Container for the table and buttons */
-.container {
-  margin-right: 90px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-top: 120px;
-
-}
-
-/* Header of the table with spacing */
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-/* Table styling */
-.table {
+/* Le modal en fond */
+/* .modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4); 
+} */
+
+/* Contenu du modal */
+/* .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+} */
+
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
 }
 
-/* Table headers */
-.table th {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  text-align: left;
+
+/* Le bouton de fermeture (×) */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-/* Table rows */
-.table td {
-  padding: 8px;
-  text-align: left;
-}
-
-/* Hover effect for table rows */
-.table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Button styling */
-.btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 14px;
 }
 
-/* Primary Button */
-.btn-primary {
-  background-color: #007bff;
-  color: white;
+.form-label {
+  font-weight: bold;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.list-group-item {
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-/* Warning Button (for editing) */
-.btn-warning {
-  background-color: #ffc107;
-  color: white;
-}
 
-.btn-warning:hover {
-  background-color: #e0a800;
+h3 {
+  text-align: center;
+  font-weight: bold;
 }
-
-/* Danger Button (for deleting) */
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
+button {
+  margin-right: 15px; 
 }

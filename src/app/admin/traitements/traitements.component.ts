@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TraitementService } from 'src/app/traitement.service';
+import { Traitement } from 'src/app/traitement/traitement.module';
 
 @Component({
   selector: 'app-traitements',
@@ -8,68 +9,86 @@ import { TraitementService } from 'src/app/traitement.service';
 })
 export class TraitementsComponent implements OnInit {
 
-  patients: any[] = [];
-  traitements: any[] = [];
-  rendezVous: any[] = [];
-  showForm: boolean = false;
-  selectedTraitement: any = null;
-  selectedStatus: string = 'Non confirmé'; // Statut par défaut
-  newTraitement: any = {
-    nom: '',
-    traitement: '',
-    statut: '',
-    cout: ''
-  };
+  traitements: Traitement[] = [];
+  newTraitement: Traitement = { type: '', description: '', cout: 0, duree: 0 };
+  showModal = false;
+  selectedTraitement: Traitement | null = null; // Assurez-vous que selectedTraitement est bien de type Traitement
 
-  constructor(private traitementService: TraitementService) {}
+  constructor(private traitementService: TraitementService) { }
 
   ngOnInit(): void {
-    // Récupérer les données du service
-    this.traitementService.getTraitements().subscribe((data) => {
-      this.patients = data.patients;
-      this.traitements = data.traitements;
-      this.rendezVous = data.rendezVous;
+    // Récupérer les traitements au chargement du composant
+    this.traitementService.getTraitements().subscribe((data: Traitement[]) => {
+      this.traitements = data;
     });
   }
 
-  // Méthode pour afficher le formulaire d'ajout
-  showAddPatientForm(): void {
-    this.showForm = true;
+  // Ouvrir le modal pour ajouter un traitement
+  openAddTraitementModal(): void {
+    this.showModal = true;
+    this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };  // Réinitialiser avant d'ajouter
   }
 
-  // Méthode pour cacher le formulaire d'ajout
-  hideAddPatientForm(): void {
-    this.showForm = false;
+  // Fermer le modal pour ajouter un traitement
+  closeAddTraitementModal(): void {
+    this.showModal = false;
   }
 
-  // Méthode pour ajouter un traitement
+  // Ajouter un traitement
   addTraitement(): void {
-    // Envoie des données à votre service ou API ici
-    const traitementToAdd = { ...this.newTraitement, statut: this.selectedStatus, traitement: this.selectedTraitement };
-    console.log('Nouveau traitement à ajouter:', traitementToAdd);
-    this.showForm = false;
+    if (!this.newTraitement.type || !this.newTraitement.description) {
+      alert("Veuillez remplir tous les champs !");
+      return;
+    }
+
+    this.traitementService.addTraitement(this.newTraitement).subscribe((traitementAjoute) => {
+      this.traitements.push(traitementAjoute); // Ajoute le traitement dans la liste affichée
+      this.closeAddTraitementModal(); // Ferme le modal après l'ajout
+    }, error => {
+      console.error('Erreur lors de l\'ajout du traitement', error); // Gestion d'erreur
+    });
   }
 
-  // Méthode pour récupérer le nom du traitement par son ID
-  getTraitementName(id: string): string {
-    const traitement = this.traitements.find(t => t.id === id);
-    return traitement ? traitement.name : 'Non spécifié';
+  // Modifier un traitement
+  editTraitement(traitement: Traitement): void {
+    this.selectedTraitement = { ...traitement };  // Copie les données du traitement sélectionné dans selectedTraitement
+    this.newTraitement = { ...traitement };  // Remplir newTraitement avec les données
+    this.showModal = true;  // Ouvre le modal
   }
 
-  // Méthode pour vérifier si un patient a un rendez-vous
-  isPatientInRendezVous(patientNom: string): boolean {
-    return this.rendezVous.some(rv => rv.patient === patientNom);
+  // Supprimer un traitement
+  deleteTraitement(id: number | undefined) {
+    if (id === undefined) {
+      console.error("Erreur : ID du traitement indéfini");
+      return;
+    }
+    this.traitements = this.traitements.filter(t => t.id !== id);
   }
 
-  // Méthode pour éditer un traitement
-  editTraitement(patientId: string): void {
-    console.log('Édition du traitement pour le patient', patientId);
-    // Ajoutez ici votre logique pour éditer le traitement
-  }
+  // Mettre à jour un traitement
+  updateTraitement(): void {
+    if (!this.newTraitement.type || !this.newTraitement.description || !this.newTraitement.id) {
+      alert("Veuillez remplir tous les champs et vérifier l'ID !");
+      return;
+    }
 
-  // Méthode pour supprimer un traitement
-  deleteTraitement(patientId: string): void {
-    console.log('Suppression du traitement pour le patient', patientId);
-    // Ajoutez ici votre logique pour supprimer le traitement
+    // Mettre à jour le traitement via le service
+    this.traitementService.updateTraitement(this.newTraitement).subscribe((traitementMisAJour) => {
+      // Trouver l'index du traitement existant
+      const index = this.traitements.findIndex(t => t.id === traitementMisAJour.id);
+
+      if (index !== -1) {
+        // Remplacer l'ancien traitement par le nouveau
+        this.traitements[index] = traitementMisAJour;
+      } else {
+        console.error("Traitement à mettre à jour introuvable.");
+      }
+
+      this.closeAddTraitementModal();
+      this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };  // Réinitialisation après mise à jour
+      this.selectedTraitement = null; // Réinitialiser l'élément sélectionné
+    }, error => {
+      console.error('Erreur lors de la mise à jour du traitement', error);
+    });
   }
 }

@@ -55,8 +55,8 @@
         <strong>Traitement:</strong> {{ appointment.treatmentName }}
         
         <!-- Boutons Modifier et Supprimer -->
-        <button class="btn btn-warning  mb-2" (click)="editAppointment(appointment)">Modifier</button>
-        <button class="btn btn-danger  mb-2" (click)="deleteAppointment(appointment.id)">Supprimer</button>
+        <a (click)="editAppointment(appointment)"> <i class="material-icons text-primary">&#xE254;</i></a>
+        <a  (click)="deleteAppointment(appointment.id)"><i class="material-icons text-danger">&#xE872;</i></a>
       </li>
     </ul>
   </div>

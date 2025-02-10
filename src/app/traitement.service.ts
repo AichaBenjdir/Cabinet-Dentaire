@@ -6,13 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TraitementService {
-
-  private apiUrl = 'assets/db.json'; // L'URL de votre db.json
+  private apiUrl = 'http://localhost:3000/traitements'; 
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour récupérer les traitements, patients et rendez-vous
-  getTraitements(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getTraitements(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
+
+  addTraitement(traitement: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, traitement); // Envoie les données au serveur
+  }
+
+  deleteTraitement(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  updateTraitement(traitement: any): Observable<any> {
+    return this.http.put(`http://localhost:3000/traitements/${traitement.id}`, traitement);
+  }
+  
 }

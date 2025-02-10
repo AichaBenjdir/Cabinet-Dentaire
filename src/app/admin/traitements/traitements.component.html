@@ -1,74 +1,74 @@
 <app-home></app-home>
-
 <div class="container d-flex justify-content-center screenContainer">
+  <h2 class="mb-4">Liste des Rendez-vous</h2>
 
-  <div class="table-header">
-    <h2>Liste des Patients</h2>
-    <button class="btn btn-primary" (click)="showAddPatientForm()">Ajouter un Traitement</button>
+  <!-- Bouton Ajouter un traitement -->
+<button class="btn btn-primary" (click)="openAddTraitementModal()">Ajouter un Traitement</button>
+
+<!-- Modal pour ajouter un traitement -->
+<div *ngIf="showModal" class="modal fade show" tabindex="-1" style="display: block;" id="addTraitementModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un Traitement</h5>
+        <button type="button" class="btn-close" (click)="closeAddTraitementModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #patientForm="ngForm" (ngSubmit)="selectedTraitement ? updateTraitement() : addTraitement()">
+          <div class="mb-3">
+            <label for="type" class="form-label">Type de Traitement :</label>
+            <input type="text" class="form-control" [(ngModel)]="newTraitement.type" name="type" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="description" class="form-label">Description :</label>
+            <textarea id="description" class="form-control" [(ngModel)]="newTraitement.description" name="description" required></textarea>
+          </div>
+        
+          <div class="mb-3">
+            <label for="cout" class="form-label">Coût Estimé (D) :</label>
+            <input type="number" id="cout" class="form-control" name="cout" [(ngModel)]="newTraitement.cout" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="duree" class="form-label">Durée (en minutes) :</label>
+            <input type="number" id="duree" class="form-control" name="duree" [(ngModel)]="newTraitement.duree" required>
+          </div>
+        
+          <button type="submit" class="btn btn-primary">
+            {{ selectedTraitement ? 'Mettre à jour' : 'Ajouter' }} le Traitement
+          </button>
+        </form>
+        
+        
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Formulaire pour ajouter un traitement -->
-  <div *ngIf="showForm">
-    <h3>Ajouter un traitement</h3>
-    <form #patientForm="ngForm" (ngSubmit)="addTraitement()">
-      <div>
-        <label for="nom">Nom du Patient:</label>
-        <select id="patient" [(ngModel)]="newTraitement.nom" name="nom" required>
-          <option *ngFor="let patient of patients" [value]="patient.nom">{{ patient.nom }} {{ patient.prenom }}</option>
-        </select>
-      </div>
+<!-- Liste des traitements -->
+<div *ngIf="traitements.length > 0" class="mt-4">
+  <h3>Liste des Traitements :</h3>
+  <ul class="list-group">
+    <li *ngFor="let traitement of traitements" class="list-group-item">
+      <strong>Type :</strong> {{ traitement.type }},
+      <strong>Description :</strong> {{ traitement.description }},
+      <strong>Coût :</strong> {{ traitement.cout }}D,
+      <strong>Durée :</strong> {{ traitement.duree }} minutes
 
-      <div>
-        <label for="traitement">Sélectionner Traitement:</label>
-        <select [(ngModel)]="selectedTraitement" name="traitement" required>
-          <option *ngFor="let traitement of traitements" [value]="traitement.id">{{ traitement.name }}</option>
-        </select>
-      </div>
+      <a (click)="editTraitement(traitement)">
+        <i class="material-icons text-primary">&#xE254;</i> <!-- Icône de modification -->
+      </a>
 
-      <div>
-        <label for="statut">Statut:</label>
-        <select [(ngModel)]="selectedStatus" name="statut" required>
-          <option value="Non confirmé">Non confirmé</option>
-          <option value="Confirmé">Confirmé</option>
-          <option value="En cours">En cours</option>
-          <option value="Terminé">Terminé</option>
-        </select>
-      </div>
+      <a *ngIf="traitement.id !== undefined" (click)="deleteTraitement(traitement.id)" title="Supprimer">
+        <i class="material-icons text-danger">&#xE872;</i>
+      </a>
+    </li>
+  </ul>
+</div>
 
-      <div>
-        <label for="cout">Coût Estimé:</label>
-        <input type="number" id="cout" name="cout" ngModel required>
-      </div>
+<div *ngIf="traitements.length === 0" class="mt-4">
+  <p>Aucun traitement ajouté pour le moment.</p>
+</div>
 
-      <div>
-        <button class="btn btn-success" type="submit">Ajouter</button>
-        <button class="btn btn-secondary" type="button" (click)="hideAddPatientForm()">Annuler</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Tableau des traitements -->
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Nom du Patient</th>
-        <th>Traitement</th>
-        <th>Statut</th>
-        <th>Coût Estimé</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of patients">
-        <td>{{ patient.nom }} {{ patient.prenom }}</td>
-        <td>{{ getTraitementName(patient.traitement) }}</td>
-        <td>{{ patient.statut }}</td>
-        <td>{{ patient.cout }}€</td>
-        <td>
-          <button class="btn btn-warning" (click)="editTraitement(patient.id)">Modifier</button>
-          <button class="btn btn-danger" (click)="deleteTraitement(patient.id)">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

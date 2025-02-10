@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';  // Importer les types nécessaires pour les graphiques
+import { ChartData, ChartOptions } from 'chart.js';
+import { DashboardService } from 'src/app/dashboard.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,46 +9,44 @@ import { ChartData, ChartOptions } from 'chart.js';  // Importer les types néce
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // Déclaration des propriétés pour les données et options du graphique
   barChartData: ChartData<'bar'> = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],  // Labels des mois (exemple)
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     datasets: [
       {
-        data: [65, 59, 80, 81, 56],  // Données correspondant à chaque mois
-        label: 'Patients',  // Légende du graphique
-        backgroundColor: 'rgba(77, 83, 96, 0.2)',  // Couleur de fond des barres
-        borderColor: 'rgba(77, 83, 96, 1)',  // Couleur des bordures des barres
-        borderWidth: 1  // Largeur des bordures des barres
+        data: [65, 59, 80, 81, 56],
+        label: 'Patients',
+        backgroundColor: 'rgba(77, 83, 96, 0.2)',
+        borderColor: 'rgba(77, 83, 96, 1)',
+        borderWidth: 1
       }
     ]
   };
 
   barChartOptions: ChartOptions = {
-    responsive: true,  // Le graphique s'adapte à la taille de son conteneur
+    responsive: true,
     scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Mois'  // Titre de l'axe X
-        }
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Nombre'  // Titre de l'axe Y
-        },
-        beginAtZero: true  // L'axe Y commence à 0
-      }
+      x: { title: { display: true, text: 'Mois' } },
+      y: { title: { display: true, text: 'Nombre' }, beginAtZero: true }
     }
   };
 
-  totalPatients: number = 100;  // Exemple de données
-  totalRdvToday: number = 15;  // Exemple de données
-  totalTraitements: number = 20;  // Exemple de données
+  totalPatients: number = 0;
+  totalRdvToday: number = 0;
+  totalTraitements: number = 0;
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    // Logic ici si tu veux récupérer ou manipuler des données
+    this.dashboardService.getPatients().subscribe((patients) => {
+      this.totalPatients = patients.length;
+    });
+
+    this.dashboardService.getRendezvous().subscribe((rendezvous) => {
+      this.totalRdvToday = rendezvous.length;
+    });
+
+    this.dashboardService.getTraitements().subscribe((traitements) => {
+      this.totalTraitements = traitements.length;
+    });
   }
 }

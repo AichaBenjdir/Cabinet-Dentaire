@@ -17,8 +17,15 @@
     {
       "id": "ddbd",
       "patient": "John Doe",
-      "date": "2025-02-18T07:34",
-      "treatment": "2"
+      "date": "2025-05-18T07:34",
+      "treatment": "2",
+      "treatmentName": "Traitement inconnu"
+    },
+    {
+      "id": "ca74",
+      "patient": "John Doe",
+      "date": "2025-02-10T11:51",
+      "treatment": "09cf"
     }
   ],
   "patients": [
@@ -40,26 +47,32 @@
   ],
   "traitements": [
     {
-      "id": "1",
-      "name": "Consultation"
+      "id": "09cf",
+      "type": "Endodontie",
+      "description": "Traitement des canaux dentaires",
+      "cout": 120,
+      "duree": 30
     },
     {
-      "id": "2",
-      "name": "Orthodontie"
+      "id": "09cf",
+      "type": "Consultation",
+      "description": "Examen général de l’état bucco-dentaire",
+      "cout": 60,
+      "duree": 30
     },
     {
-      "id": "3",
-      "name": "Endodontique"
+      "id": "63d3",
+      "type": "Détartrage et Polissage",
+      "description": "Élimination du tartre et polissage des dents",
+      "cout": 90,
+      "duree": 20
     },
     {
-      "id": "4",
-      "name": "Blanchiment Dentaire"
-    },
-    {
-      "id": "5",
-      "name": "Autres"
+      "id": "b6ce",
+      "type": "Blanchiment Dentaire",
+      "description": "Éclaircissement de la teinte des dents",
+      "cout": 180,
+      "duree": 45
     }
-
-
   ]
 }

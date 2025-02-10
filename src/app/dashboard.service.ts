@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  constructor() { }
+  private apiUrl = 'http://localhost:3000'; // Assurez-vous que db.json tourne via json-server
 
-  getDashboardData(): Observable<any> {
-    // Remplace ceci par une véritable requête HTTP
-    return of({
-      patients: 100,
-      rdvToday: 5,
-      traitements: 15
-    });
+  constructor(private http: HttpClient) {}
+
+  getPatients(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/patients`);
+  }
+
+  getRendezvous(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/rendezVous`);
+  }
+
+  getTraitements(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/traitements`);
   }
 }

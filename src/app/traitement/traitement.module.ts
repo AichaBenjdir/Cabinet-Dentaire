@@ -1,10 +1,7 @@
 export interface Traitement {
-  id?: number;
-  patientId: number;
+  id?: number; // L'ID est optionnel pour l'ajout
   type: string;
-  duration: number;
-  cost: number;
-  status: 'en cours' | 'terminé' | 'suivi nécessaire';
-  followUpDate: Date | null; 
-  
+  description: string;
+  cout: number;
+  duree: number;
 }
