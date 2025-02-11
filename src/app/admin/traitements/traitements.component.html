@@ -2,10 +2,8 @@
 <div class="container d-flex justify-content-center screenContainer">
   <h2 class="mb-4">Liste des Rendez-vous</h2>
 
-  <!-- Bouton Ajouter un traitement -->
 <button class="btn btn-primary" (click)="openAddTraitementModal()">Ajouter un Traitement</button>
 
-<!-- Modal pour ajouter un traitement -->
 <div *ngIf="showModal" class="modal fade show" tabindex="-1" style="display: block;" id="addTraitementModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -46,7 +44,6 @@
   </div>
 </div>
 
-<!-- Liste des traitements -->
 <div *ngIf="traitements.length > 0" class="mt-4">
   <h3>Liste des Traitements :</h3>
   <ul class="list-group">
