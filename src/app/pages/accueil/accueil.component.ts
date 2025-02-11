@@ -11,7 +11,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
     src: 'assets/c2.jpg', 
     title: 'DR Zied BENJDIR',  
     descriptions: [
-      'Cabinet Dentaire et d\'Implantologie',
+      'Cabinet Dentaire',
       '5 ans d\'expérience, 15+ formations et diplômes'
     ],
     link: '/contactez-nous/'
