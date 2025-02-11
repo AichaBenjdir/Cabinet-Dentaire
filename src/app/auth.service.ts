@@ -25,23 +25,23 @@ export class AuthService {
     return token !== null;
   }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<any> {  // Changer le type de retour à 'any' pour récupérer l'utilisateur
     return this.http.get<User[]>(this.apiUrl).pipe(
       map(users => {
         console.log("Données reçues :", users);
         const user = users.find(u => u.email === email && u.password === password);
         if (user) {
-          localStorage.setItem('authToken', 'fake-jwt-token');
-          return true;
+          localStorage.setItem('currentUser', JSON.stringify(user));  // Stocke l'utilisateur complet dans 'currentUser'
+          localStorage.setItem('authToken', 'fake-jwt-token');  // Simule un token d'authentification
+          return { isAuthenticated: true, user };  // Retourner un objet contenant isAuthenticated et l'utilisateur
         }
-        return false;
+        return { isAuthenticated: false };  // Si l'authentification échoue, renvoyer false
       }),
       catchError(error => {
         console.error("Erreur lors de la requête :", error);
-        return of(false);
+        return of({ isAuthenticated: false });
       })
     );
-    
   }
   
   

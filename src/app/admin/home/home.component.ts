@@ -7,8 +7,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  currentUser: any;
+  isLoggedIn = false;
 
-  // user_name = "Dr. Jean Dupont";  // Exemple de nom d'utilisateur
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    const storedUser = localStorage.getItem('currentUser');
+    this.isLoggedIn = !!storedUser;
+    this.currentUser = storedUser ? JSON.parse(storedUser) : null;
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser'); 
+    localStorage.removeItem('authToken');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
+  }
+}
+
+
+  // user_name = "Dr. Zied Benjdir";  // Exemple de nom d'utilisateur
   // imageUrl = "assets/c2.jpg";  // URL de l'image de profil
 
   // constructor(private router: Router) {}
@@ -20,16 +39,16 @@ export class HomeComponent {
     
   //   this.router.navigate(['/login']);
   // }
-  constructor(private router: Router) {} 
-  isLoggedIn = false;
+//   constructor(private router: Router) {} 
+//   isLoggedIn = false;
 
-  ngOnInit() {
-    this.isLoggedIn = !!localStorage.getItem('user');
-  }
+//   ngOnInit() {
+//     this.isLoggedIn = !!localStorage.getItem('user');
+//   }
   
-  logout() {
-    localStorage.removeItem('user'); // Suppression des infos utilisateur
-    this.router.navigate(['/login']); // Redirection vers la page publique
-  }
+//   logout() {
+//     localStorage.removeItem('user'); // Suppression des infos utilisateur
+//     this.router.navigate(['/login']); // Redirection vers la page publique
+//   }
   
-}
+// }
