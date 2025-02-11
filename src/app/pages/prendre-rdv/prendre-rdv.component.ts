@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class PrendreRDVComponent {
 
+  onSubmit() {
+   console.log('Formulaire soumis');
+    
+    document.getElementById('agenda')?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
