@@ -12,7 +12,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
     title: 'DR Zied BENJDIR',  
     descriptions: [
       'Cabinet Dentaire et d\'Implantologie',
-      '5 ans d\'expérience, 30+ formations et diplômes'
+      '5 ans d\'expérience, 15+ formations et diplômes'
     ],
     link: '/contactez-nous/'
   };

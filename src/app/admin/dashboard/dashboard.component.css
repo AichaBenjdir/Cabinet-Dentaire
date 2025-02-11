@@ -1,9 +1,9 @@
 .container {
-  margin: 70px auto; /* Centrage horizontal */
-  max-width: 1200px; /* Évite une largeur excessive */
-  padding: 50px; /* Ajoute un léger padding */
-  background: #ffffff; /* Fond blanc pour propreté */
-  border-radius: 10px; /* Coins arrondis pour un look moderne */
+  margin: 70px auto; 
+  max-width: 1200px; 
+  padding: 50px; 
+  background: #ffffff; 
+  border-radius: 10px; 
  
 }
 
@@ -12,7 +12,6 @@
   margin: 40px 20px;
 }
 
-/* Aligner main-cards et chart sur la même ligne */
 .top-section {
   display: flex;
   justify-content: space-between;
@@ -111,7 +110,7 @@ h2{
     font-size: 14px;
   }
   .table thead {
-    display: none; /* Cache l’en-tête sur mobile */
+    display: none; 
   }
   .table tbody, .table tr, .table td {
     display: block;

@@ -76,8 +76,8 @@ h5{
 
 .responsive-container {
     position: relative;
-    width: 100%;           /* Largeur 100% */
-    padding-top: 56.25%;   /* Rapport 16:9 (hauteur / largeur) */
+    width: 100%;          
+    padding-top: 56.25%;   
   }
   
   .responsive-container iframe {
