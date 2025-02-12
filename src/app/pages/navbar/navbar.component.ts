@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 isNavbar: boolean = false;
 isFooter: boolean = false;
+
+isCollapsed: boolean = true;
+
+  // Fonction pour inverser l'état du collapse
+  toggleMenu() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }
