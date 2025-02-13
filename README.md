@@ -1,27 +1,32 @@
 # CabinetDentaire
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des rendez-vous, patients et traitements avec une interface publique pour l'information et prise de rendez-vous, et une interface privée pour la gestion des données. 
 
-## Development server
+## Fonctionalités
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+● Authentification 
+● Gérer un patient: Ajouter, modifier et supprimer un patient.
+● Gérer un rendez-vous : Prendre, modifier et supprimer des rendez-vous..
+● Gérer un traitement : Ajouter, suivre et mettre à jour les soins apportés.
+● Consultation des informations du cabinet (Page accueil, page nos-traitement, page prendre un rendez-vous en ligne) 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Build Docker Image
 
-## Build
+docker build -t aichabenjdir/cabinet-dentaire .
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Run Docker Image
 
-## Running unit tests
+docker run -d -p 8083:80 -p 4000:3000 aichabenjdir/cabinet-dentaire
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Tag Image
 
-## Running end-to-end tests
+docker tag aichabenjdir/cabinet-dentaire aichabenjdir/cabinet-dentaire:1.0
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Push Docker Image
 
-## Further help
+docker push aichabenjdir/cabinet-dentaire:1.0
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Pull Docker Image
+
+docker pull aichabenjdir/cabinet-dentaire:1.0
