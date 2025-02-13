@@ -3,7 +3,6 @@
 Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des rendez-vous, patients et traitements avec une interface publique pour l'information et prise de rendez-vous, et une interface privée pour la gestion des données. 
 
 
-(https://github.com/AichaBenjdir/Cabinet-Dentaire/blob/86cfd6f075074429ba3b5784b4c501c5460c02f3/Cabinet%20dentaire.png)
 
 
 
