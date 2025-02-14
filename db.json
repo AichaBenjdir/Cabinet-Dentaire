@@ -64,6 +64,14 @@
       "telephone": "36-987-147",
       "dateNaissance": "1995-04-12",
       "isEditing": false
+    },
+    {
+      "id": "3c2a",
+      "nom": "Jdir",
+      "prenom": "Imen",
+      "telephone": "55-874-963",
+      "dateNaissance": "1999-01-01",
+      "isEditing": false
     }
   ],
   "traitements": [
