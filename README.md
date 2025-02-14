@@ -6,7 +6,7 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 
 
-![Uploading Cabinet dentaire.png…]()
+
 
 
 
