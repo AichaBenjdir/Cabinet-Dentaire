@@ -5,7 +5,7 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 
 [
-![Uploading Cabinet dentaire.png…]()](https://github.com/AichaBenjdir/Cabinet-Dentaire/blob/665727fb8d7f27c29b9eccf8be8f897cccd8b4f5/Cabinet%20dentaire.png)
+![](https://github.com/AichaBenjdir/Cabinet-Dentaire/blob/665727fb8d7f27c29b9eccf8be8f897cccd8b4f5/Cabinet%20dentaire.png)
 
 
 
