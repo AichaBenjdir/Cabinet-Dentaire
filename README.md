@@ -25,6 +25,15 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 ● Consultation des informations du cabinet (Page accueil, page nos-traitement, page prendre un rendez-vous en ligne) 
 
 
+
+## 📌 Installation
+
+
+
+    
+
+
+
 ## Build Docker Image
 
     docker build -t aichabenjdir/cabinet-dentaire .
