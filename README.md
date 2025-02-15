@@ -23,7 +23,7 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 ## Build Docker Image
 
-     docker build -t aichabenjdir/cabinet-dentaire .
+  docker build -t aichabenjdir/cabinet-dentaire .
 
 ## Run Docker Image
 
