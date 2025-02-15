@@ -12,7 +12,7 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 
 
-## Fonctionalités
+## 🚀 Fonctionalités
 
 ● Authentification 
 ● Gérer un patient: Ajouter, modifier et supprimer un patient.
