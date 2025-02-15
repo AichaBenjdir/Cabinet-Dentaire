@@ -23,11 +23,11 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 ## Build Docker Image
 
-  docker build -t aichabenjdir/cabinet-dentaire .
+    docker build -t aichabenjdir/cabinet-dentaire .
 
 ## Run Docker Image
   
-  docker run -d -p 8083:80 -p 4000:3000 aichabenjdir/cabinet-dentaire
+    docker run -d -p 8083:80 -p 4000:3000 aichabenjdir/cabinet-dentaire
 
 ## Tag Image
      
@@ -39,7 +39,7 @@ Application Web pour Cabinet Dentaire (Angular 16) : Gestion simplifiée des ren
 
 ## Pull Docker Image
    
-   docker pull aichabenjdir/cabinet-dentaire:1.0
+     docker pull aichabenjdir/cabinet-dentaire:1.0
    
 ## Contributeurs
   Aïcha Benjdir 
