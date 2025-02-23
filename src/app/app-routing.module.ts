@@ -4,19 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 // import { AppointmentsComponent } from './components/appointments/appointments.component';
 // import { PatientsComponent } from './components/patients/patients.component';
 
-import { AccueilComponent } from './pages/accueil/accueil.component';
-import { HomeComponent } from './admin/home/home.component';
-
-import { AjouterPatientsComponent } from './admin/ajouter-patients/ajouter-patients.component';
-import { TraitementsComponent } from './admin/traitements/traitements.component';
-import { AppointmentsComponent } from './admin/appointments/appointments.component';
-import { NosTraitementsComponent } from './pages/nos-traitements/nos-traitements.component';
-import { AvantApresComponent } from './pages/avant-apres/avant-apres.component';
-import { PrendreRDVComponent } from './pages/prendre-rdv/prendre-rdv.component';
-import { LoginComponent } from './pages/login/login.component';
-import { AuthGuard } from './auth.guard';
-
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { HomeComponent } from './components/admin/home/home.component';
+import { AjouterPatientsComponent } from './components/admin/ajouter-patients/ajouter-patients.component';
+import { AppointmentsComponent } from './components/admin/appointments/appointments.component';
+import { TraitementsComponent } from './components/admin/traitements/traitements.component';
+import { AccueilComponent } from './components/pages/accueil/accueil.component';
+import { NosTraitementsComponent } from './components/pages/nos-traitements/nos-traitements.component';
+import { AvantApresComponent } from './components/pages/avant-apres/avant-apres.component';
+import { PrendreRDVComponent } from './components/pages/prendre-rdv/prendre-rdv.component';
+import { LoginComponent } from './components/pages/login/login.component';
 
 
 const routes: Routes = [
