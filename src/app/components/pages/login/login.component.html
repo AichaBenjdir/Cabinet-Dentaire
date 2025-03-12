@@ -1,20 +1,27 @@
-<div class="container  login-page">
+<div class="container login-page">
   <input type="checkbox" id="flip">
   <div class="cover">
     <div class="front">
       <img src="assets/logoCabinet.jpg" alt="">
-
     </div>
-
-    <div class="back">
-
-    </div>
+    <div class="back"></div>
   </div>
 
   <div class="forms">
     <div class="form-content">
       <div class="login-form">
         <div class="title">Login</div>
+
+        <!-- Affichage du message d'erreur -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Affichage du message de succès -->
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+
         <form (ngSubmit)="onSubmit()">
           <div class="input-boxes">
             <div class="input-box">
@@ -33,3 +40,6 @@
           </div>
         </form>
       </div>
+    </div>
+  </div>
+</div>
