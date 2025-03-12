@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-center screenContainer">
   <h2 class="mb-4">Liste des Rendez-vous</h2>
-  
+
   <button class="btn btn-primary mb-3" (click)="openModal()">Prendre un rendez-vous</button>
 
   <!-- Modal pour ajouter un rendez-vous -->
@@ -46,18 +46,17 @@
   </div>
 
   <!-- Liste des rendez-vous -->
-<div class="mt-4">
+  <div class="mt-4">
     <h3>Agenda</h3>
     <ul class="list-group">
       <li *ngFor="let appointment of appointments" class="list-group-item">
         <strong>Patient:</strong> {{ appointment.patient }},
         <strong>Date:</strong> {{ appointment.date | date:'yyyy-MM-dd HH:mm' }} ,
         <strong>Traitement:</strong> {{ appointment.treatmentName }}
-        
+
         <!-- Boutons Modifier et Supprimer -->
         <a (click)="editAppointment(appointment)"> <i class="material-icons text-primary">&#xE254;</i></a>
-        <a  (click)="deleteAppointment(appointment.id)"><i class="material-icons text-danger">&#xE872;</i></a>
+        <a (click)="deleteAppointment(appointment.id)"><i class="material-icons text-danger">&#xE872;</i></a>
       </li>
     </ul>
   </div>
-  

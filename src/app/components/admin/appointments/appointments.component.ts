@@ -90,22 +90,22 @@ export class AppointmentsComponent {
       if (this.newAppointment.id) {
         this.rendezvousService.updateRendezvous(this.newAppointment).subscribe(
           response => {
-            console.log('✅ Rendez-vous modifié:', response);
+            console.log(' Rendez-vous modifié:', response);
             this.loadRendezvous();
             this.newAppointment = { patient: '', date: '', treatment: '' };
             this.closeModal();
           },
-          error => console.error('❌ Erreur de modification:', error)
+          error => console.error('Erreur de modification:', error)
         );
       } else {
         this.rendezvousService.addRendezvous(this.newAppointment).subscribe(
           response => {
-            console.log('✅ Rendez-vous ajouté:', response);
+            console.log('Rendez-vous ajouté:', response);
             this.loadRendezvous();
             this.newAppointment = { patient: '', date: '', treatment: '' };
             this.closeModal();
           },
-          error => console.error('❌ Erreur d\'ajout:', error)
+          error => console.error('Erreur d\'ajout:', error)
         );
       }
     }

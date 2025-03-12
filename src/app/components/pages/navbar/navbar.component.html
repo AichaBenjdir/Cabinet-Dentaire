@@ -1,35 +1,35 @@
 <nav class="navbar navbar-expand-lg bg-white shadow fixed-top" style="--bs-bg-opacity: .9;">
-    <div class="container d-flex align-items-center">
-      <!-- Logo -->
-      <a href="#" class="navbar-brand">
-        <img src="../../../assets/logoCabinet.jpg" alt="Cabinet Logo" width="125" height="75" class="rounded-circle">
-      </a>
-  
-      <!-- Navbar Toggle (pour les petits écrans) -->
-      <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-controls="menu" [attr.aria-expanded]="isCollapsed ? 'false' : 'true'" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- Menu Collapse -->
-      <div [ngClass]="{'collapse': isCollapsed, 'navbar-collapse': true}" id="menu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/accueil" routerLinkActive="active">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/nos-traitement" routerLinkActive="active">Nos Traitements</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/avant-apres" routerLinkActive="active">Avant / Après</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/prendre-rdv" routerLinkActive="active">Prendre RDV</a>
-          </li>
-          <li class="nav-item" *ngIf="!isNavbar && !isFooter">
-            <a class="nav-link btn btn-primary text-dark px-3 rounded-pill" routerLink="/login">Login</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container d-flex align-items-center">
+    <!-- Logo -->
+    <a href="#" class="navbar-brand">
+      <img src="../../../assets/logoCabinet.jpg" alt="Cabinet Logo" width="125" height="75" class="rounded-circle">
+    </a>
+
+    <!-- Navbar Toggle (pour les petits écrans) -->
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-controls="menu"
+      [attr.aria-expanded]="isCollapsed ? 'false' : 'true'" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu Collapse -->
+    <div [ngClass]="{'collapse': isCollapsed, 'navbar-collapse': true}" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/accueil" routerLinkActive="active">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nos-traitement" routerLinkActive="active">Nos Traitements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/avant-apres" routerLinkActive="active">Avant / Après</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/prendre-rdv" routerLinkActive="active">Prendre RDV</a>
+        </li>
+        <li class="nav-item" *ngIf="!isNavbar && !isFooter">
+          <a class="nav-link btn btn-primary text-dark px-3 rounded-pill" routerLink="/login">Login</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>

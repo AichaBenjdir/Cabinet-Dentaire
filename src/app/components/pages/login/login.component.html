@@ -1,38 +1,35 @@
 <div class="container  login-page">
-    <input type="checkbox" id="flip">
-    <div class="cover">
-      <div class="front">
-        <img src="assets/logoCabinet.jpg" alt="">
-        
-      </div>
-      
-      <div class="back">
-        
-      </div>
+  <input type="checkbox" id="flip">
+  <div class="cover">
+    <div class="front">
+      <img src="assets/logoCabinet.jpg" alt="">
+
     </div>
-    
-    <div class="forms">
-        <div class="form-content">
-          <div class="login-form">
-            <div class="title">Login</div>
-          <form (ngSubmit)="onSubmit()">
-            <div class="input-boxes">
-              <div class="input-box">
-                <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Enter your email" [(ngModel)]="email"
-                name="email" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" [(ngModel)]="password"
-                name="password" required>
-              </div>
-              
-              <div class="button input-box">
-                <input type="submit" value="Submit">
-              </div>
-              
-              </div>
+
+    <div class="back">
+
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-content">
+      <div class="login-form">
+        <div class="title">Login</div>
+        <form (ngSubmit)="onSubmit()">
+          <div class="input-boxes">
+            <div class="input-box">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="input-box">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Enter your password" [(ngModel)]="password" name="password" required>
+            </div>
+
+            <div class="button input-box">
+              <input type="submit" value="Submit">
+            </div>
+
+          </div>
         </form>
       </div>
-       

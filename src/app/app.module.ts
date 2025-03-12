@@ -25,7 +25,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { AjouterPatientsComponent } from './components/admin/ajouter-patients/ajouter-patients.component';
 import { FooterComponent } from './components/pages/footer/footer.component';
 import { HomeComponent } from './components/admin/home/home.component';
-import { ProfileComponent } from './components/admin/profile/profile.component';
+
 import { TraitementsComponent } from './components/admin/traitements/traitements.component';
 import { AppointmentsComponent } from './components/admin/appointments/appointments.component';
 import { LoginComponent } from './components/pages/login/login.component';
@@ -45,7 +45,6 @@ import { LoginComponent } from './components/pages/login/login.component';
     AjouterPatientsComponent,
     FooterComponent,
     HomeComponent,
-    ProfileComponent,
     TraitementsComponent,
     AppointmentsComponent,
     LoginComponent,
