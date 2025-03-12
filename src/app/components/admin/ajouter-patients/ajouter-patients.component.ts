@@ -18,6 +18,8 @@ interface Patient {
 })
 export class AjouterPatientsComponent implements OnInit {
   patients: Patient[] = [];
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private patientService: PatientService) {}
 
@@ -36,13 +38,34 @@ export class AjouterPatientsComponent implements OnInit {
   addPatient(): void {
     const newPatient: Patient = { nom: '', prenom: '', telephone: '', dateNaissance: '', isEditing: true };
     this.patientService.addPatient(newPatient).subscribe((patient) => {
-      this.patients.push(patient);  // Ajouter le patient à la liste
+      this.patients.push(patient);  
     });
   }
 
   editPatient(index: number): void {
+    
     this.patients[index].isEditing = true;
+   
+    this.successMessage = '';
+    this.errorMessage = '';
   }
+  
+  savePatient(index: number): void {
+   
+    this.patients[index].isEditing = false;
+    
+    
+    this.patientService.updatePatient(this.patients[index]).subscribe(() => {
+      
+      this.successMessage = 'Rendez-vous modifié avec succès !';
+      this.errorMessage = '';  
+    }, error => {
+      
+      this.errorMessage = 'Erreur lors de la modification du patient.';
+      this.successMessage = '';  
+    });
+  }
+  
 
   updatePatient(event: Event, index: number, field: keyof Patient): void {
     const value = (event.target as HTMLElement).innerText.trim();
@@ -52,15 +75,13 @@ export class AjouterPatientsComponent implements OnInit {
     }
   }
 
-  savePatient(index: number): void {
-    this.patients[index].isEditing = false;
-    this.patientService.updatePatient(this.patients[index]).subscribe();  // Sauvegarder le patient
-  }
-
+ 
   deletePatient(index: number): void {
     const patientToDelete = this.patients[index];
     this.patientService.deletePatient(patientToDelete.id!).subscribe(() => {
       this.patients.splice(index, 1);  // Supprimer le patient de la liste
+      this.successMessage = 'Rendez-vous supprimé avec succès!';
+      this.errorMessage = ''; 
     });
   }
 }

@@ -8,6 +8,13 @@
             <div class="col-sm-8">
               <h2>Liste des <b>Patients</b></h2>
             </div>
+            <div *ngIf="successMessage" class="alert alert-success">
+              {{ successMessage }}
+            </div>
+            
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
             <div class="col-sm-4">
               <button type="button" class="btn btn-primary" (click)="addPatient()">
                 <i class="fa fa-plus"></i> Ajouter

@@ -45,24 +45,8 @@
       "id": "a24c",
       "nom": "RJ",
       "prenom": "Mariem",
-      "telephone": "55-987-146",
+      "telephone": "55-987-132",
       "dateNaissance": "1996-03-05",
-      "isEditing": false
-    },
-    {
-      "id": "9837",
-      "nom": "Sow",
-      "prenom": "Oumou",
-      "telephone": "36-987-147",
-      "dateNaissance": "1995-04-12",
-      "isEditing": false
-    },
-    {
-      "id": "3c2a",
-      "nom": "Jdir",
-      "prenom": "Imen",
-      "telephone": "55-874-963",
-      "dateNaissance": "1999-01-01",
       "isEditing": false
     }
   ],
