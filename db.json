@@ -11,19 +11,17 @@
       "id": "2916",
       "patient": "RJ Mariem",
       "date": "2025-02-13T07:26",
-      "treatment": "09cf1"
+      "treatment": "09cf1",
+      "traitementName": "Détartrage et Polissage",
+      "traitement": "b6ce"
     },
     {
       "id": "ddbd",
       "patient": "Jane BK",
       "date": "2025-05-18T07:34",
-      "treatment": "09cf2"
-    },
-    {
-      "id": "ca74",
-      "patient": "Dialo Fatima",
-      "date": "2025-02-10T11:51",
-      "treatment": "63d3"
+      "treatment": "09cf2",
+      "traitementName": "Traitement introuvable",
+      "traitement": "63d3"
     }
   ],
   "patients": [

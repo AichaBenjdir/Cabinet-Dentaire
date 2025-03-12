@@ -20,7 +20,7 @@ export class AppointmentService {
     return this.http.get<any[]>('http://localhost:3000/patients');
   }
 
-  getTreatments(): Observable<any> {
+  getTraitements(): Observable<any> {
     return this.http.get<any[]>('http://localhost:3000/traitements');  // Récupère les traitements
   }
 

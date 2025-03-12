@@ -3,6 +3,15 @@
 <div class="container d-flex justify-content-center screenContainer">
   <h2 class="mb-4">Liste des Rendez-vous</h2>
 
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+
   <button class="btn btn-primary mb-3" (click)="openModal()">Prendre un rendez-vous</button>
 
   <!-- Modal pour ajouter un rendez-vous -->
@@ -30,13 +39,16 @@
             </div>
 
             <div class="mb-3">
-              <label for="treatment" class="form-label">Traitement :</label>
-              <select name="treatment" [(ngModel)]="newAppointment.treatment" class="form-select" required>
-                <option *ngFor="let treatment of treatments" [value]="treatment.id">
-                  {{ treatment.name }}
+              <label for="traitement" class="form-label">Traitement :</label>
+              <select name="traitement" [(ngModel)]="newAppointment.traitement" class="form-select" required>
+                <option *ngIf="!traitements.length" disabled>Chargement des traitements...</option>
+                <option *ngFor="let traitement of traitements" [value]="traitement.id">
+                  {{ traitement.type }}
                 </option>
               </select>
+              
             </div>
+            
 
             <button type="submit" class="btn btn-primary w-100">Ajouter</button>
           </form>
@@ -52,7 +64,7 @@
       <li *ngFor="let appointment of appointments" class="list-group-item">
         <strong>Patient:</strong> {{ appointment.patient }},
         <strong>Date:</strong> {{ appointment.date | date:'yyyy-MM-dd HH:mm' }} ,
-        <strong>Traitement:</strong> {{ appointment.treatmentName }}
+        <strong>Traitement:</strong> {{ appointment.traitementName }}
 
         <!-- Boutons Modifier et Supprimer -->
         <a (click)="editAppointment(appointment)"> <i class="material-icons text-primary">&#xE254;</i></a>

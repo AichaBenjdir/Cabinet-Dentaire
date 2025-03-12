@@ -10,13 +10,15 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 })
 export class AppointmentsComponent {
   appointments: any[] = [];
+  successMessage: string = '';
+  errorMessage: string = '';
   newAppointment: any = {
     patient: '',
     date: '',
-    treatment: ''
+    traitement: ''
   };
   patients: any[] = [];
-  treatments: any[] = [];  // Liste des traitements
+  traitements: any[] = [];  // Liste des traitements
   isModalOpen: boolean = false;
 
   constructor(private rendezvousService: AppointmentService) { }
@@ -24,7 +26,7 @@ export class AppointmentsComponent {
   ngOnInit(): void {
     this.loadRendezvous();
     this.loadPatients();
-    this.loadTreatments();  // Charger les traitements
+    this.loadTraitements();  // Charger les traitements
   }
   
   loadPatients(): void {
@@ -32,36 +34,33 @@ export class AppointmentsComponent {
       this.patients = data;
     });
   }
-
-  loadTreatments(): void {
-    this.rendezvousService.getTreatments().subscribe((data: any[]) => {
-      console.log(" Traitements récupérés :", data);
-      this.treatments = data;
-      this.loadRendezvous();
-    }, error => {
-      console.error(" Erreur chargement traitements :", error);
+  loadTraitements(): void {
+    this.rendezvousService.getTraitements().subscribe((data: any[]) => {
+      console.log('Traitements chargés :', data);
+      this.traitements = data;
     });
   }
+  
   
   
   loadRendezvous(): void {
     this.rendezvousService.getRendezvous().subscribe((data: any[]) => {
-      console.log(" Rendez-vous récupérés :", data);
-      console.log(" Traitements disponibles :", this.treatments);
-  
+      console.log("Rendez-vous récupérés :", data);
+      
       this.appointments = data.map(appointment => {
-        const treatment = this.treatments.find(t => t.id === appointment.treatment);
+        const traitement = this.traitements.find(t => t.id === appointment.traitement);
         return {
           ...appointment,
-          treatmentName: treatment ? treatment.type : ' Traitement introuvable'
+          traitementName: traitement ? traitement.type : 'Traitement introuvable'
         };
       });
-  
       console.log("Rendez-vous après association :", this.appointments);
     }, error => {
-      console.error(" Erreur chargement rendez-vous :", error);
+      console.error("Erreur de chargement des rendez-vous :", error);
     });
   }
+  
+  
   
   
   
@@ -76,23 +75,27 @@ export class AppointmentsComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
+      // Trouver et affecter le patient sélectionné
       const selectedPatient = this.patients.find(p => p.id == this.newAppointment.patient);
       if (selectedPatient) {
         this.newAppointment.patient = `${selectedPatient.nom} ${selectedPatient.prenom}`;
       }
   
-      // 🛠 Correction ici : comparer l'ID au lieu du nom
-      const selectedTreatment = this.treatments.find(t => t.id == this.newAppointment.treatment);
-      if (selectedTreatment) {
-        this.newAppointment.treatment = selectedTreatment.id;
+    
+      const selectedTraitement = this.traitements.find(t => t.id == this.newAppointment.traitement);
+      if (selectedTraitement) {
+        this.newAppointment.traitement = selectedTraitement.id;  
+      } else {
+        console.error("Traitement non trouvé !");
       }
   
+      // Envoi du rendez-vous à l'API
       if (this.newAppointment.id) {
         this.rendezvousService.updateRendezvous(this.newAppointment).subscribe(
           response => {
-            console.log(' Rendez-vous modifié:', response);
+            console.log('Rendez-vous modifié:', response);
             this.loadRendezvous();
-            this.newAppointment = { patient: '', date: '', treatment: '' };
+            this.newAppointment = { patient: '', date: '', traitement: '' };
             this.closeModal();
           },
           error => console.error('Erreur de modification:', error)
@@ -102,7 +105,7 @@ export class AppointmentsComponent {
           response => {
             console.log('Rendez-vous ajouté:', response);
             this.loadRendezvous();
-            this.newAppointment = { patient: '', date: '', treatment: '' };
+            this.newAppointment = { patient: '', date: '', traitement: '' };
             this.closeModal();
           },
           error => console.error('Erreur d\'ajout:', error)
@@ -112,21 +115,27 @@ export class AppointmentsComponent {
   }
   
   
+  
 
 
   deleteAppointment(appointmentId: string): void {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce rendez-vous ?")) {
       this.rendezvousService.deleteRendezvous(appointmentId).subscribe(
         () => {
-          console.log(' Rendez-vous supprimé avec succès');
+          console.log('Rendez-vous supprimé avec succès');
           this.loadRendezvous();  // Recharger la liste des rendez-vous après la suppression
+          this.successMessage = 'Rendez-vous supprimé avec succès!';
+          this.errorMessage = '';  // Réinitialiser l'erreur si tout se passe bien
         },
         error => {
           console.error('Erreur lors de la suppression du rendez-vous:', error);
+          this.errorMessage = 'Erreur lors de la suppression du rendez-vous.';
+          this.successMessage = '';  // Réinitialiser le message de succès si une erreur se produit
         }
       );
     }
   }
+  
   
   editAppointment(appointment: any): void {
     this.newAppointment = { ...appointment };  // Pré-remplir les champs du formulaire
