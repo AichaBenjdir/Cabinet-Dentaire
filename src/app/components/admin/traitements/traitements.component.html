@@ -2,6 +2,15 @@
 <div class="container d-flex justify-content-center screenContainer">
   <h2 class="mb-4">Liste des Rendez-vous</h2>
 
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+
   <button class="btn btn-primary" (click)="openAddTraitementModal()">Ajouter un Traitement</button>
 
   <div *ngIf="showModal" class="modal fade show" tabindex="-1" style="display: block;" id="addTraitementModal">

@@ -69,15 +69,15 @@
       "id": "63d3",
       "type": "Détartrage et Polissage",
       "description": "Élimination du tartre et polissage des dents",
-      "cout": 80,
+      "cout": 70,
       "duree": 20
     },
     {
-      "id": "b6ce",
-      "type": "Blanchiment Dentaire",
-      "description": "Éclaircissement de la teinte des dents",
-      "cout": 180,
-      "duree": 45
+      "id": "65b2",
+      "type": "Paradontie",
+      "description": "La parodontite est une maladie chronique inflammatoire buccale qui détruit progressivement l'appareil de support des dents.",
+      "cout": 120,
+      "duree": 20
     }
   ]
 }

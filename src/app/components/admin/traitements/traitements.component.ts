@@ -2,94 +2,106 @@ import { Component, OnInit } from '@angular/core';
 import { Traitement } from 'src/app/modules/traitement/traitement.module';
 import { TraitementService } from 'src/app/services/traitement.service';
 
-
 @Component({
   selector: 'app-traitements',
   templateUrl: './traitements.component.html',
   styleUrls: ['./traitements.component.css']
 })
 export class TraitementsComponent implements OnInit {
-
+  successMessage: string = '';
+  errorMessage: string = '';
   traitements: Traitement[] = [];
   newTraitement: Traitement = { type: '', description: '', cout: 0, duree: 0 };
   showModal = false;
-  selectedTraitement: Traitement | null = null; // Assurez-vous que selectedTraitement est bien de type Traitement
-
+  selectedTraitement: Traitement | null = null;
   constructor(private traitementService: TraitementService) { }
 
   ngOnInit(): void {
-    // Récupérer les traitements au chargement du composant
     this.traitementService.getTraitements().subscribe((data: Traitement[]) => {
       this.traitements = data;
+    }, error => {
+      this.errorMessage = 'Erreur lors du chargement des traitements';
     });
   }
 
-  // Ouvrir le modal pour ajouter un traitement
   openAddTraitementModal(): void {
     this.showModal = true;
-    this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };  // Réinitialiser avant d'ajouter
+    this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };  
   }
 
-  // Fermer le modal pour ajouter un traitement
   closeAddTraitementModal(): void {
     this.showModal = false;
+    this.successMessage = '';
+    this.errorMessage = '';
   }
 
-  // Ajouter un traitement
   addTraitement(): void {
     if (!this.newTraitement.type || !this.newTraitement.description) {
-      alert("Veuillez remplir tous les champs !");
+      this.errorMessage = 'Veuillez remplir tous les champs !';
       return;
     }
 
-    this.traitementService.addTraitement(this.newTraitement).subscribe((traitementAjoute) => {
-      this.traitements.push(traitementAjoute); // Ajoute le traitement dans la liste affichée
-      this.closeAddTraitementModal(); // Ferme le modal après l'ajout
-    }, error => {
-      console.error('Erreur lors de l\'ajout du traitement', error); // Gestion d'erreur
-    });
+    this.traitementService.addTraitement(this.newTraitement).subscribe(
+      (traitementAjoute) => {
+        this.traitements.push(traitementAjoute);
+        this.closeAddTraitementModal(); 
+        this.successMessage = 'Traitement ajouté avec succès !';
+      },
+      error => {
+        this.errorMessage = 'Erreur lors de l\'ajout du traitement';
+      }
+    );
   }
 
-  // Modifier un traitement
   editTraitement(traitement: Traitement): void {
-    this.selectedTraitement = { ...traitement };  // Copie les données du traitement sélectionné dans selectedTraitement
-    this.newTraitement = { ...traitement };  // Remplir newTraitement avec les données
-    this.showModal = true;  // Ouvre le modal
+    this.selectedTraitement = { ...traitement };
+    this.newTraitement = { ...traitement };
+    this.showModal = true;
   }
 
-  // Supprimer un traitement
   deleteTraitement(id: number | undefined) {
     if (id === undefined) {
-      console.error("Erreur : ID du traitement indéfini");
+      this.errorMessage = 'Erreur : ID du traitement indéfini';
       return;
     }
-    this.traitements = this.traitements.filter(t => t.id !== id);
+
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce traitement ?')) {
+      this.traitementService.deleteTraitement(id).subscribe(
+        () => {
+          this.traitements = this.traitements.filter(t => t.id !== id);
+          this.successMessage = 'Traitement supprimé avec succès !';
+          this.errorMessage = '';
+        },
+        error => {
+          this.errorMessage = 'Erreur lors de la suppression du traitement';
+          this.successMessage = '';
+        }
+      );
+    }
   }
 
-  // Mettre à jour un traitement
   updateTraitement(): void {
     if (!this.newTraitement.type || !this.newTraitement.description || !this.newTraitement.id) {
-      alert("Veuillez remplir tous les champs et vérifier l'ID !");
+      this.errorMessage = 'Veuillez remplir tous les champs et vérifier l\'ID !';
       return;
     }
 
-    // Mettre à jour le traitement via le service
-    this.traitementService.updateTraitement(this.newTraitement).subscribe((traitementMisAJour) => {
-      // Trouver l'index du traitement existant
-      const index = this.traitements.findIndex(t => t.id === traitementMisAJour.id);
-
-      if (index !== -1) {
-        // Remplacer l'ancien traitement par le nouveau
-        this.traitements[index] = traitementMisAJour;
-      } else {
-        console.error("Traitement à mettre à jour introuvable.");
+    this.traitementService.updateTraitement(this.newTraitement).subscribe(
+      (traitementMisAJour) => {
+        const index = this.traitements.findIndex(t => t.id === traitementMisAJour.id);
+        if (index !== -1) {
+          this.traitements[index] = traitementMisAJour;
+          this.successMessage = 'Traitement mis à jour avec succès !';
+        } else {
+          this.errorMessage = 'Traitement à mettre à jour introuvable.';
+        }
+        this.closeAddTraitementModal();
+        this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };
+        this.selectedTraitement = null;
+      },
+      error => {
+        this.errorMessage = 'Erreur lors de la mise à jour du traitement';
       }
-
-      this.closeAddTraitementModal();
-      this.newTraitement = { type: '', description: '', cout: 0, duree: 0 };  // Réinitialisation après mise à jour
-      this.selectedTraitement = null; // Réinitialiser l'élément sélectionné
-    }, error => {
-      console.error('Erreur lors de la mise à jour du traitement', error);
-    });
+    );
   }
 }
